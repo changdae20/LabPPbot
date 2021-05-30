@@ -2,6 +2,14 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = require("./token.json");
 
+function check_sleep(text){
+    let corpus = ["졸려","잠와","피곤해","피곤행","졸령","잘까","일어남","기상","자야지","자기","졸리다","피곤하","자야징","잘까","아프다","자려고","잘라고","졸리네","자야하","자러감","개피곤","잔다","자야하나","자야겠다","힘들다","힘드네","힘드넹","어지럽","아프네","아프넹","아파","자러간다","자러가기"];
+    for(let i=0; i<corpus.length;i++){
+        if(text.indexOf(corpus[i])!=-1) return true;
+    }
+    return false;
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -18,10 +26,6 @@ client.on('message', msg => {
         msg.delete();
         msg.channel.send('나는그렇게생각하지않아');
     }
-    if (msg.content === '!자라') {
-        msg.delete();
-        msg.channel.send('자라');
-    }
     if (msg.content === "!오늘의 운세"){
         var value = Math.random();
         if(value < 0.65)
@@ -33,6 +37,22 @@ client.on('message', msg => {
         else
             msg.channel.send("오늘 드디어 퀠을 하드클 했는데 B클이네요...");
     }
+    if (msg.content === '!자라' ) {
+        msg.delete();
+        msg.channel.send('자라');
+    }
+    if(check_sleep(msg.content)){
+        setTimeout(function(){
+            msg.channel.send('자라');
+        },3000);
+    }
+    if(msg.content.substring(0,5)==="!say "){
+        if(msg.member.user.username == "관성" && msg.member.user.discriminator=="7730"){
+            msg.delete();
+            msg.channel.send(msg.content.substring(5,msg.content.length));
+        }
+    }
+
 });
 
 client.login(token.token);
