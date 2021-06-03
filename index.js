@@ -21,7 +21,7 @@ client.on('message', msg => {
         msg.channel.send(attachment);
     }
     if (msg.content === '!help' || msg.content === '!도움말') {
-        msg.channel.send('현재 사용가능한 명령어입니다 : \n\n!ㅇ : 나도그렇게생각해\n!ㄴ : 나는그렇게생각하지않아\n!자라 : 자라\n!오늘의 운세 : 야근?칼퇴?연차?');
+        msg.channel.send('현재 사용가능한 명령어입니다 : \n\n!ㅇ : 나도그렇게생각해\n!ㄴ : 나는그렇게생각하지않아\n!자라 : 자라\n!오늘의 운세 : 야근?칼퇴?연차?\n!단또 : 110개의 고양이사진 가챠');
     }
     if (msg.content === '!ㅇ') {
         msg.delete();
